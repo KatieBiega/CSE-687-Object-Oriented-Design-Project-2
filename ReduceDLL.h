@@ -3,8 +3,11 @@
 */
 
 #pragma once
+#include <iostream>
+#include <fstream>
 #include <string>
-#include "MapReduceParent.h"
+#include <vector>
+//#include "MapReduceParent.h"
 
 #ifdef REDUCEDLL_EXPORTS
 #define REDUCEDLL_API __declspec(dllexport)
@@ -12,19 +15,22 @@
 #define REDUCEDLL_API __declspec(dllimport)
 #endif
 
+using std::vector;
 using std::string;
 
-// import the string and place it into the initialVector
-extern "C++" REDUCEDLL_API void import(string inputString);
+extern "C++" REDUCEDLL_API class Reduce {
+public:
 
-// sort the strings into alphabeetical order (ignore this, unless std::map's automatic sorting is insufficient)
-extern "C++" REDUCEDLL_API void sort();
+	void import(string inputString); // import the string and place it into the initialVector
+	void sort(); // sort the strings into alphabeetical order (ignore this, unless std::map's automatic sorting is insufficient)
+	void aggregate(); // aggregate each key/value pair with the same key into single keys with many attached values
+	void reduce(); // reduce the aggregated values into a single total value for the associated key
+	string vector_export(); // export the final educed vector as a single string
 
-// aggregate each key/value pair with the same key into single keys with many attached values
-extern "C++" REDUCEDLL_API void aggregate();
+private:
 
-// reduce the aggregated values into a single total value for the associated key
-extern "C++" REDUCEDLL_API void reduce();
+	vector<string> initialVector; // keys pulled from source file in their original state
+	vector<string> aggregatedVector; // this is used to store aggregated keys
+	vector<string> reducedVector; // conversion of the reducedVector into a reduced version
 
-// export the final educed vector as a single string
-extern "C++" REDUCEDLL_API string vector_export();
+};
