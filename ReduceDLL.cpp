@@ -148,7 +148,7 @@ void reduce() //iterate through the vector, getting the word and adding up each 
 	//cout << "Vector reduction complete.\n";
 }
 
-string reduce_export() {
+string verctor_export() {
 
 	string outputString;
 	int toggle = 0;
