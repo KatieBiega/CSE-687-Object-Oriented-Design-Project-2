@@ -7,6 +7,7 @@
 #include <algorithm>
 
 #include "ReduceDLL.h"
+#include "MapDLL.h"
 #include "Map.h"
 #include "File Management.h"
 
