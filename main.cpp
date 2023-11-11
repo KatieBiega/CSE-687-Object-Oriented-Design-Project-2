@@ -6,8 +6,8 @@
 #include <vector>
 #include <algorithm>
 
-#include "ReduceDLL.h"
-#include "MapDLL.h"
+//#include "ReduceDLL.h"
+//#include "MapDLL.h"
 #include "File Management.h"
 
 #include <Windows.h>
