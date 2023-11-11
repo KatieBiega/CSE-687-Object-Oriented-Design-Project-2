@@ -1,10 +1,5 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
-#include "ReduceDLL.h"
-#include "MapDLL.h"
-
-//__declspec(dllexport) void import();
-//__declspec(dllexport) string reduce();
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
