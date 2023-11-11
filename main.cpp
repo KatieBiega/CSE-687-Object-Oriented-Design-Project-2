@@ -38,9 +38,9 @@ int main() {
     string successString = "";
     string successFilename = "SUCCESS.txt";
 
-    HMODULE mapDLL = LoadLibrary("Map.dll");
-    HMODULE reduceDLL = LoadLibrary("Reduce.dll");
-    HMODULE mapreduceparentDLL = LoadLibrary("MapReduceParent.dll");
+    HMODULE mapDLL = LoadLibrary("MapDLL.dll");
+    HMODULE reduceDLL = LoadLibrary("ReduceDLL.dll");
+    //HMODULE mapreduceparentDLL = LoadLibrary("MapReduceParent.dll");
 
     if (mapDLL == NULL || reduceDLL == NULL) {
         cout << "Failed to load DLLs." << std::endl;
