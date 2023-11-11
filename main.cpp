@@ -8,7 +8,6 @@
 
 #include "ReduceDLL.h"
 #include "MapDLL.h"
-#include "Map.h"
 #include "File Management.h"
 
 #include <Windows.h>
