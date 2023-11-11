@@ -26,12 +26,7 @@ using std::to_string;
 using std::getline;
 using std::cout;
 
-// DLL internal state variables:
-vector<string> initialVector; // keys pulled from source file in their original state
-vector<string> aggregatedVector; // this is used to store aggregated keys
-vector<string> reducedVector; // conversion of the reducedVector into a reduced version
-
-void import(string inputString) // breaks down text in string into multiple strings in the initial vector for use by reduce member functions
+void Reduce::import(string inputString) // breaks down text in string into multiple strings in the initial vector for use by reduce member functions
 {
 	stringstream stream(inputString); // intermediary placeholder between input line and vector 
 
@@ -45,14 +40,14 @@ void import(string inputString) // breaks down text in string into multiple stri
 
 }
 
-void sort() {
+void Reduce::sort() {
 	//cout << "Beginning sort in Reduce class...\n";
 	std::sort(initialVector.begin(), initialVector.end()); // call sort function from standard C++ library to sort the strings in the vector alphabetically
 	//cout << "Sort completed in Reduce class...\n";
 
 }
 
-void aggregate() {
+void Reduce::aggregate() {
 
 	string currentWord = ""; // the word currently being aggregated
 	string currentAggregate = ""; // placeholder string; built before adding to new aggregatedVector
@@ -101,7 +96,7 @@ void aggregate() {
 
 }
 
-void reduce() //iterate through the vector, getting the word and adding up each "1" that appears to find a total
+void Reduce::reduce() //iterate through the vector, getting the word and adding up each "1" that appears to find a total
 {
 
 	int begin;
@@ -148,7 +143,7 @@ void reduce() //iterate through the vector, getting the word and adding up each 
 	//cout << "Vector reduction complete.\n";
 }
 
-string verctor_export() {
+string Reduce::vector_export() {
 
 	string outputString;
 	int toggle = 0;
