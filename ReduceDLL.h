@@ -4,7 +4,7 @@
 
 #pragma once
 #include <string>
-//#include "MapReduceParent.h"
+#include "MapReduceParent.h"
 
 #ifdef REDUCEDLL_EXPORTS
 #define REDUCEDLL_API __declspec(dllexport)
@@ -27,4 +27,4 @@ extern "C++" REDUCEDLL_API void aggregate();
 extern "C++" REDUCEDLL_API void reduce();
 
 // export the final educed vector as a single string
-extern "C++" REDUCEDLL_API string reduce_export();
+extern "C++" REDUCEDLL_API string vector_export();
