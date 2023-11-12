@@ -1,0 +1,9 @@
+﻿  pch.cpp
+  dllmain.cpp
+  ReduceDLL.cpp
+C:\Users\WindowsMobile\source\repos\Project2\reduceDLL\reduceDLL\ReduceDLL.cpp(62,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\WindowsMobile\source\repos\Project2\reduceDLL\reduceDLL\ReduceDLL.cpp(63,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\WindowsMobile\source\repos\Project2\reduceDLL\reduceDLL\ReduceDLL.cpp(119,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\WindowsMobile\source\repos\Project2\reduceDLL\reduceDLL\ReduceDLL.cpp(120,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  reduceDLL.vcxproj -> C:\Users\WindowsMobile\source\repos\Project2\reduceDLL\x64\Debug\reduceDLL.dll
