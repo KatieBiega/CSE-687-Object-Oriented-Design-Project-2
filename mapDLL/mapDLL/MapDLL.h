@@ -11,6 +11,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include "MaoInterface.h"
 using namespace std;
 
 
@@ -20,7 +21,7 @@ using namespace std;
 #define MAP_API __declspec(dllimport)
 #endif
 
-extern "C++" MAP_API class Map {
+class Map: public MapInterface {
 public:
 	void map(std::string& line); // Method takes in a string of all input files and creates a vector of words
 	std::string vector_export(); // Method uses the locally defined vector of parsed words to create (key, value) pairs and stores them in a mapped string
@@ -32,7 +33,7 @@ private:
 
 };
 
-extern "C++"
+extern "C"
 {
 	MAP_API Map* _cdecl CreateMap();
 };
