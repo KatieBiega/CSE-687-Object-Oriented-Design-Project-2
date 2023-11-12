@@ -1,6 +1,2 @@
-﻿  MapDLL.cpp
-C:\Users\WindowsMobile\source\repos\Project2\mapDLL\mapDLL\MapDLL.h(33,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Map' when no variable is declared
-C:\Users\WindowsMobile\source\repos\Project2\mapDLL\mapDLL\MapDLL.cpp(35,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\WindowsMobile\source\repos\Project2\mapDLL\mapDLL\MapDLL.cpp(69,6): warning C4273: 'CreateMap': inconsistent dll linkage
-C:\Users\WindowsMobile\source\repos\Project2\mapDLL\mapDLL\MapDLL.h(37,22): message : see previous definition of 'CreateMap'
+﻿  dllmain.cpp
   mapDLL.vcxproj -> C:\Users\WindowsMobile\source\repos\Project2\mapDLL\x64\Debug\mapDLL.dll

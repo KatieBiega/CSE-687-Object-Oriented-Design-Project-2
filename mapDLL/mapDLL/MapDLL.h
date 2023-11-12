@@ -11,9 +11,7 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "MaoInterface.h"
-using namespace std;
-
+#include "MapInterface.h"
 
 #ifdef MAP_EXPORTS
 #define MAP_API __declspec(dllexport)

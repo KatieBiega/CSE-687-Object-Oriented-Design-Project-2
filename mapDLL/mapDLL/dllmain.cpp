@@ -1,6 +1,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 #include "MapDLL.h"
+#include "MapInterface.h"
 
 //__declspec(dllexport) void import();
 //__declspec(dllexport) string map();

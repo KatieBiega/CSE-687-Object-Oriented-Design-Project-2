@@ -11,6 +11,7 @@
 */
 
 #include "pch.h"
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -21,9 +22,7 @@
 #include <vector>
 #include "MapDLL.h"
 
-typedef void (WINAPI* PMAP) ();
-
-using namespace std;
+using std::stringstream;
 
 void Map::map(string& line)
 {
