@@ -5,7 +5,6 @@
 #include <vector>
 #include <filesystem>
 
-using namespace std;
 using std::cout;
 using std::cin;
 using std::endl;
@@ -13,6 +12,10 @@ using std::string;
 using std::getline;
 using std::vector;
 using std::stringstream;
+using std::ifstream;
+using std::ofstream;
+using std::istreambuf_iterator;
+using std::cerr;
 
 FileManagement::FileManagement(const std::string& inputDir, const std::string& outputDir, const std::string& tempDir)
     : inputDirectory(inputDir), outputDirectory(outputDir), tempDirectory(tempDir) {}

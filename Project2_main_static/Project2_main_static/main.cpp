@@ -6,8 +6,8 @@
 #include <vector>
 #include <algorithm>
 
-//#include "ReduceDLL.h"
-#include "BaseInterface.h"
+#include "../../mapDLL/MapDLL/MapInterface.h"
+#include "../../ReduceDLL/ReduceDLL/ReduceInterface.h"
 #include "File Management.h"
 
 #include <Windows.h>
@@ -24,9 +24,14 @@ using std::endl;
 typedef void (*MapFunction)(const char* input, char* output);
 typedef void (*ReduceFunction)(const char* input, char* output);
 */
-typedef MapReduceObject* (*CREATE_MAPPER) ();
+
+typedef MapInterface* (*CREATE_MAPPER) ();
+typedef ReduceInterface* (*CREATE_REDUCER) ();
 
 int main() {
+    cout << "Program started. Press any key to continue...\n";
+    cin;
+
     string fileName = "";
     string fileString = "";
     string inputDirectory = "";
@@ -41,26 +46,21 @@ int main() {
     string successString = "";
     string successFilename = "SUCCESS.txt";
 
-    HMODULE mapDLL = LoadLibrary("MapDLL.dll");
-    HMODULE reduceDLL = LoadLibrary("ReduceDLL.dll");
+    HMODULE mapDLL = LoadLibrary("MapDLL.dll"); // load dll for map functions
+    HMODULE reduceDLL = LoadLibrary("ReduceDLL.dll"); // load dll for library functions
 
-    if (mapDLL == NULL) {
+    if (mapDLL == NULL) // exit main function if mapDLL is not found
+    {
         cout << "Failed to load mapDLL." << endl;
         return 1;
     }
 
-    if (reduceDLL == NULL) {
+    if (reduceDLL == NULL) // exit main function if reduceDLL is not found
+    {
         cout << "Failed to load reduceDLL." << endl;
         return 1;
     }
 
-
-    CREATE_MAPPER mapperPtr (CREATE_MAPPER)GetProcAddress(DLL, "CreateMap");
-    MapReduceParent* pMapper = mapperPtr(3, 4);
-    pMapper->map();
-    cout << "Area is:" << pShape->GetArea();
-
-    
 
     /*
     MapFunction map = (MapFunction)GetProcAddress(mapDLL, "map"); // find the map function
@@ -113,10 +113,9 @@ int main() {
     }
     */
 
+    cout << "==== MAP & REDUCE ====\n\n"; // add title
 
-    cout << "==== MAP & REDUCE ====\n\n";
-
-    cout << "Enter the input directory: ";
+    cout << "Enter the input directory: "; // prompt user to input i/o directories
     cin >> inputDirectory;
     cout << "Enter the output directory: ";
     cin >> outputDirectory;
@@ -124,41 +123,58 @@ int main() {
     cin >> tempDirectory;
 
     //WORKFLOW//
-    //Create file management class based on the user inputs
-    FileManagement FileManage(inputDirectory, outputDirectory, tempDirectory);
-    extern Map mapping;
-    extern Reduce reduction;
+    
 
-    //Read all files into single string and pass to Map class
-    //cout << "FileManagement Class initialized.\n";
-    fileString = FileManage.ReadAllFiles();
-    //cout << "All files read.\n";
-    mapping.map(fileString);
-    //cout << "String from files passed to map function.\n";
+    CREATE_MAPPER mapperPtr = (CREATE_MAPPER)GetProcAddress(mapDLL, "CreateMap"); // create pointer to function to create new Map object
+    MapInterface* pMapper = mapperPtr();
 
-    //Write mapped output string to intermediate file 
-    mapped_string = mapping.mapExport();
-    //cout << "Mapping complete; exporting resulting string.\n";
+    CREATE_REDUCER reducerPtr = (CREATE_REDUCER)GetProcAddress(reduceDLL, "CreateReduce");  // create pointer to function to create new Reduce object
+    ReduceInterface* pReducer = reducerPtr();
+
+
+    FileManagement FileManage(inputDirectory, outputDirectory, tempDirectory); //Create file management class based on the user inputs
+    cout << "FileManagement Class initialized.\n";
+
+
+
+    fileString = FileManage.ReadAllFiles();     //Read all files into single string and pass to Map class
+    cout << "All files read.\n";
+    cout << "String from files passed to map function.\n";
+    // 
+    cout << "Beginning map function\n";
+    pMapper->map(fileString);
+
+
+    
+    cout << "Mapping complete; exporting resulting string.\n";
+    mapped_string = pMapper->vector_export();     //Write mapped output string to intermediate file 
+
     FileManage.WriteToTempFile(tempFilename, mapped_string);
-    //cout << "String from mapping written to temp file.\n";
+    cout << "String from mapping written to temp file.\n";
 
     //Read from intermediate file and pass data to Reduce class
     tempFileContent = FileManage.ReadFromTempFile(tempFilename);
-    //cout << "New string read from temp file.\n";
-    reduction.import(tempFileContent);
+    cout << "New string read from temp file.\n";
+    
+    pReducer->import(tempFileContent);
     cout << "String imported by reduce class function and placed in vector.\n";
-    sort();
-    //cout << "Vector sorted.\n";
-    aggregate();
-    //cout << "Vector aggregated.\n";
-    reduce();
-    //cout << "Vector reduced.\n";
-    reduced_string = reduce_export();
-    //cout << "Vector exported to string.\n";
+
+    pReducer->sort();
+    cout << "Vector sorted.\n";
+
+    pReducer->aggregate();
+    cout << "Vector aggregated.\n";
+
+    pReducer->reduce();
+    cout << "Vector reduced.\n";
+
+    reduced_string = pReducer->vector_export();
+    cout << "Vector exported to string.\n";
 
     //Sorted, aggregated, and reduced output string is written into final output file
     FileManage.WriteToOutputFile(outputFilename, reduced_string);
-    //cout << "string written to output file.\n";
+    cout << "string written to output file.\n";
+
     FileManage.WriteToOutputFile(successFilename, successString);
     cout << "Success.\n";
 
