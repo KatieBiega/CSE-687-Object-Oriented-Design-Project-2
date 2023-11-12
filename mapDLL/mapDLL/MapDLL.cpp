@@ -21,7 +21,7 @@
 #include <vector>
 #include "MapDLL.h"
 
-typedef void (WINAPI * PMAP) ();
+typedef void (WINAPI* PMAP) ();
 
 using namespace std;
 
@@ -29,12 +29,12 @@ void Map::map(string& line)
 {
 	//Initializing temporary string for buffering words
 	string temp = "";
-	
+
 	//Remove all punctuation and special characters excpet spaces from input line
 	int index;
 	while ((index = line.find_first_of(".,-:&!?\\;*+[]<>()'")) != string::npos)
 	{
-		
+
 		line.erase(index, 1);
 		//cout << "Erase line in mapping.\n";
 	}
