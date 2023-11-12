@@ -164,3 +164,8 @@ string Reduce::vector_export() {
 	return outputString;
 
 }
+
+Reduce* CreateReduce()
+{
+	return new Reduce();
+}

@@ -1,6 +1,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 #include "ReduceDLL.h"
+#include "ReduceInterface.h"
 
 //__declspec(dllexport) void import();
 //__declspec(dllexport) string reduce();

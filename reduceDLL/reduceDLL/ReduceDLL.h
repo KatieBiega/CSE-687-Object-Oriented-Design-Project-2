@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-//#include "MapReduceParent.h"
+#include "ReduceInterface.h"
 
 #ifdef REDUCEDLL_EXPORTS
 #define REDUCEDLL_API __declspec(dllexport)
@@ -18,7 +18,7 @@
 using std::vector;
 using std::string;
 
-extern "C++" REDUCEDLL_API class Reduce {
+class Reduce :public ReduceInterface{
 public:
 
 	void import(string inputString); // import the string and place it into the initialVector
@@ -33,4 +33,9 @@ private:
 	vector<string> aggregatedVector; // this is used to store aggregated keys
 	vector<string> reducedVector; // conversion of the reducedVector into a reduced version
 
+};
+
+extern "C"
+{
+	REDUCEDLL_API Reduce* _cdecl CreateReduce();
 };
