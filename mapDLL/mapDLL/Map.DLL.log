@@ -1,7 +1,0 @@
-﻿  pch.cpp
-  MapDLL.cpp
-C:\Users\biega\source\repos\Project 1\MapDLL.h(32,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Map' when no variable is declared
-C:\Users\biega\source\repos\Project 1\MapDLL.cpp(35,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  dllmain.cpp
-  Generating Code...
-  Map.DLL.vcxproj -> C:\Users\biega\source\repos\Map.DLL\x64\Debug\Map.DLL.dll
