@@ -1,0 +1,2 @@
+C:\Users\WindowsMobile\source\repos\Project2\Project2_main_static\x64\Debug\Project2_main_static.vcxproj.AssemblyReference.cache
+C:\Users\WindowsMobile\source\repos\Project2\Project2_main_static\x64\Debug\Project2_main_static.exe
